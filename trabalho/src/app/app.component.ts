@@ -12,8 +12,8 @@ export class AppComponent {
   public formLogin: FormGroup;
   public array = environment.test;
 
-  public time 
-  
+  public time
+
   constructor(
     //private formBuilder: FormBuilder,
   ) { }
@@ -23,14 +23,25 @@ export class AppComponent {
   }
 
   public buildForm() {
-    
+
   }
 
-  public test(){
+  public test() {
     console.log('soifhsoidfj')
     console.log(this.array.length)
-    
 
+    this.time = this.tempoDecorrido(this.minhaFuncao);
+  }
+
+  tempoDecorrido(funcao) {
+    var args = Array.prototype.slice.call(arguments, 1);
+    var inicio = performance.now();
+    funcao.apply(null, args);
+    return performance.now() - inicio;
+  }
+
+  minhaFuncao(x) {
+    for (var i = x; i < x + 10; i++) console.log(i);
   }
 
 }
