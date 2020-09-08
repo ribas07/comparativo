@@ -10,9 +10,9 @@ import { environment } from '../environments/environment';
 })
 export class AppComponent {
   public formLogin: FormGroup;
-  public array = environment.test;
+  public array = [1,123,123,123,123,123,2,3434,5,342,4]
 
-  public time
+  public time: number
 
   constructor(
     //private formBuilder: FormBuilder,
@@ -42,6 +42,10 @@ export class AppComponent {
 
   minhaFuncao(x) {
     for (var i = x; i < x + 10; i++) console.log(i);
+  }
+
+  geradorNumerico(){
+    
   }
 
 }

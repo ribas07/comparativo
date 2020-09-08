@@ -1,13 +1,39 @@
 <div class="card">
-    <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-        <div class="card-header">Métodos de Ordenação</div>
-        <div class="card-body">
-            <h5 style="text-align: center;" class="card-title">Tamanho do array utilizado é de {{array.length}}</h5>
-            
-            <p class="card-text">Tempo de execução: {{time}} </p>
+
+    <div class="row">
+        <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+            <div class="card-header">Métodos de Ordenação</div>
+            <div class="card-body">
+                <h5 style="text-align: center;" class="card-title">Tamanho do array utilizado é de {{array.length}}</h5>
+
+                <p class="card-text">Tempo de execução: {{time}} </p>
+            </div>
+        </div>
+
+        <select class="form-control-sm gerarNumero">
+            <option>100.000</option>
+            <option>500.000</option>
+            <option>100.000.000</option>
+        </select>
+
+        <div class="gerarNumero">
+            <button type="button" (click)="geradorNumerico()" class="btn btn-sm btn-primary">Gerar numeros aleatórios</button>
+        </div>
+        <div class="gerarNumero">
+            <button type="button" (click)="geradorNumerico()" class="btn btn-sm btn-primary">Gerar numeros crescente</button>
+        </div>
+        <div class="gerarNumero">
+            <button type="button" (click)="geradorNumerico()" class="btn btn-sm btn-primary">Gerar numeros decrescente</button>
         </div>
     </div>
-    <div class="buttonOrdenar">
-        <button type="button" (click)="test()" class="btn btn-success">Ordenar</button>
+
+    <div class="row">
+        <div class="buttonOrdenar">
+            <button type="button" (click)="test()" class="btn btn-success">ordenação quicksort</button>
+        </div>
+        <div class="buttonOrdenar">
+            <button type="button" (click)="test()" class="btn btn-success">ordenação insertion sort</button>
+        </div>
     </div>
+
 </div>
