@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { InsertSort } from "./insert-sort";
+import { QuickSort } from "./quick-sort";
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { environment } from '../environments/environment';
 
@@ -30,14 +32,14 @@ export class AppComponent {
     console.log('soifhsoidfj')
     console.log(this.array.length)
 
-    this.time = this.tempoDecorrido(this.minhaFuncao);
+    this.time = this.tempoDecorrido(this.quickSort);
   }
 
   tempoDecorrido(funcao) {
     var args = Array.prototype.slice.call(arguments, 1);
     var inicio = performance.now();
     funcao.apply(null, args);
-    return performance.now() - inicio;
+    return (performance.now() - inicio) / 1000;
   }
 
   minhaFuncao(x) {
@@ -45,7 +47,39 @@ export class AppComponent {
   }
 
   geradorNumerico(){
-    
+
+  }
+
+  public insertSort () {
+    let sorter:InsertSort = new InsertSort();
+    let dummyarray:number[] = [];
+
+    for(let i:number=0; i<200001; i++){
+
+      dummyarray[i] = Math.floor(Math.random()*200000+1);
+
+    }
+
+    console.log("Unsorted Array", dummyarray);
+
+    dummyarray = sorter.sort(dummyarray);
+
+    console.log("Sorted Array", dummyarray);
+  }
+
+  public quickSort() {
+    let arry:number[] = [];
+
+    for(let i = 0; i<1000000; i++){
+      arry[i] =Math.floor(Math.random() * 1000000) + 1;
+    }
+
+    console.log('Unsorted',arry);
+
+    let sorter:QuickSort = new QuickSort();
+    sorter.sort(arry);
+
+    console.log('Sorted',arry);
   }
 
 }
