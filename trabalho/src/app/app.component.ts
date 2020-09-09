@@ -1,38 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { InsertSort } from "./insert-sort";
 import { QuickSort } from "./quick-sort";
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { environment } from '../environments/environment';
-
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  public formLogin: FormGroup;
-  public array = [1,123,123,123,123,123,2,3434,5,342,4]
 
-  public time: number
+export class AppComponent implements OnInit{
+  public time: number;
+  public formTest: FormGroup;
+  public array:number[] = []
 
+  public tamanhoArry = [
+    {value: 100000, text:'100.000'},
+    {value: 500000, text:'500.000'},
+    {value: 1000000, text:'1.000.000'}
+  ]
   constructor(
-    //private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {
-    this.buildForm()
+    this.build()
   }
 
-  public buildForm() {
-
+  public build() {
+    this.formTest = this.formBuilder.group({
+      tamanho: [''],
+    })
   }
 
-  public test() {
-    console.log('soifhsoidfj')
-    console.log(this.array.length)
-
-    this.time = this.tempoDecorrido(this.quickSort);
+  geradorNumerico() {
+    for (let i: number = 0; i < this.formTest.get('tamanho').value; i++) {
+      this.array[i] = Math.floor(Math.random() * 200000 + 1);
+    }
   }
 
   tempoDecorrido(funcao) {
@@ -42,44 +46,33 @@ export class AppComponent {
     return (performance.now() - inicio) / 1000;
   }
 
-  minhaFuncao(x) {
-    for (var i = x; i < x + 10; i++) console.log(i);
+
+
+
+  public test(){
+    this.time = this.tempoDecorrido(this.insertSort)
   }
 
-  geradorNumerico(){
 
-  }
-
-  public insertSort () {
-    let sorter:InsertSort = new InsertSort();
-    let dummyarray:number[] = [];
-
-    for(let i:number=0; i<200001; i++){
-
-      dummyarray[i] = Math.floor(Math.random()*200000+1);
-
-    }
-
-    console.log("Unsorted Array", dummyarray);
-
-    dummyarray = sorter.sort(dummyarray);
-
+  public insertSort() {
+    let sorter: InsertSort = new InsertSort();
+    let dummyarray = sorter.sort(this.array);
     console.log("Sorted Array", dummyarray);
   }
 
   public quickSort() {
-    let arry:number[] = [];
+    let arry: number[] = [];
 
-    for(let i = 0; i<1000000; i++){
-      arry[i] =Math.floor(Math.random() * 1000000) + 1;
+    for (let i = 0; i < 1000000; i++) {
+      arry[i] = Math.floor(Math.random() * 1000000) + 1;
     }
 
-    console.log('Unsorted',arry);
+    console.log('Unsorted', arry);
 
-    let sorter:QuickSort = new QuickSort();
+    let sorter: QuickSort = new QuickSort();
     sorter.sort(arry);
 
-    console.log('Sorted',arry);
+    console.log('Sorted', arry);
   }
 
 }

@@ -5,26 +5,27 @@
             <div class="card-header">Métodos de Ordenação</div>
             <div class="card-body">
                 <h5 style="text-align: center;" class="card-title">Tamanho do array utilizado é de {{array.length}}</h5>
-
-              <p class="card-text">Tempo de execução: {{time}} </p>
-              <button type="button" (click)="test()" class="btn btn-success">Tempo</button>
+                <p class="card-text">Tempo de execução: {{time}} </p>
             </div>
         </div>
 
-        <select class="form-control-sm gerarNumero">
-            <option>100.000</option>
-            <option>500.000</option>
-            <option>100.000.000</option>
-        </select>
+        <form [formGroup]="formTest">
+            <select class="form-control-sm gerarNumero" id="tamanho" formControlName="tamanho">
+                <option *ngFor="let tamanho of tamanhoArry" [value]="tamanho.value">{{tamanho.text}}</option>
+            </select>
+        </form>
 
         <div class="gerarNumero">
-            <button type="button" (click)="geradorNumerico()" class="btn btn-sm btn-primary">Gerar números aleatórios</button>
+            <button type="button" (click)="geradorNumerico()" class="btn btn-sm btn-primary">Gerar números aleatórios
+            </button>
         </div>
         <div class="gerarNumero">
-            <button type="button" (click)="geradorNumerico()" class="btn btn-sm btn-primary">Gerar números crescente</button>
+            <button type="button" (click)="geradorNumerico()" class="btn btn-sm btn-primary">Gerar números crescente
+            </button>
         </div>
         <div class="gerarNumero">
-            <button type="button" (click)="geradorNumerico()" class="btn btn-sm btn-primary">Gerar números decrescente</button>
+            <button type="button" (click)="geradorNumerico()" class="btn btn-sm btn-primary">Gerar números decrescente
+            </button>
         </div>
     </div>
 
@@ -33,7 +34,7 @@
             <button type="button" (click)="quickSort()" class="btn btn-success">Quicksort</button>
         </div>
         <div class="buttonOrdenar">
-            <button type="button" (click)="insertSort()" class="btn btn-success">Insertion Sort</button>
+            <button type="button" (click)="test()" class="btn btn-success">Insertion Sort</button>
         </div>
     </div>
 
