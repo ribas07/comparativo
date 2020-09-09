@@ -7,7 +7,7 @@ export class InsertSort implements OnInit {
 
   public sort(arr:number[]):number[]{
 
-    if(arr!==undefined){
+    if (arr!==undefined) {
       for(let i:number = 0; i< arr.length; i++){
 
         let j = i-1;

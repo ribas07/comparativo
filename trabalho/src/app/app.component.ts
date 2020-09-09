@@ -12,13 +12,14 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class AppComponent implements OnInit{
   public time: number;
   public formTest: FormGroup;
-  public array:number[] = []
+  public array: number[] = [];
 
   public tamanhoArry = [
     {value: 100000, text:'100.000'},
     {value: 500000, text:'500.000'},
     {value: 1000000, text:'1.000.000'}
-  ]
+  ];
+
   constructor(
     private formBuilder: FormBuilder,
   ) { }
@@ -55,9 +56,17 @@ export class AppComponent implements OnInit{
 
 
   public insertSort() {
+    let arry: number[] = [];
+
+    for (let i = 0; i < 1000000; i++) {
+      arry[i] = Math.floor(Math.random() * 1000000) + 1;
+    }
+
+    console.log('Desordenado:', arry);
+
     let sorter: InsertSort = new InsertSort();
-    let dummyarray = sorter.sort(this.array);
-    console.log("Sorted Array", dummyarray);
+    let dummyarray = sorter.sort(arry);
+    console.log("Array Ordenado", dummyarray);
   }
 
   public quickSort() {
@@ -67,12 +76,12 @@ export class AppComponent implements OnInit{
       arry[i] = Math.floor(Math.random() * 1000000) + 1;
     }
 
-    console.log('Unsorted', arry);
+    console.log('Desordenado', arry);
 
     let sorter: QuickSort = new QuickSort();
     sorter.sort(arry);
 
-    console.log('Sorted', arry);
+    console.log('Array Ordenado', arry);
   }
 
 }
