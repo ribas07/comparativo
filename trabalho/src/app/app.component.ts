@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InsertSort } from "./insert-sort";
 import { QuickSort } from "./quick-sort";
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,10 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   public time: number;
   public formTest: FormGroup;
+<<<<<<< HEAD
   public array: number[] = [];
 
   public tamanhoArry = [
@@ -20,6 +22,15 @@ export class AppComponent implements OnInit{
     {value: 1000000, text:'1.000.000'}
   ];
 
+=======
+  public array: number[] = []
+
+  public tamanhoArry = [
+    { value: 100000, text: '100.000' },
+    { value: 500000, text: '500.000' },
+    { value: 1000000, text: '1.000.000' }
+  ]
+>>>>>>> 930d5a57ec9c2be32aec2692333f68a3503b4966
   constructor(
     private formBuilder: FormBuilder,
   ) { }
@@ -38,6 +49,7 @@ export class AppComponent implements OnInit{
     for (let i: number = 0; i < this.formTest.get('tamanho').value; i++) {
       this.array[i] = Math.floor(Math.random() * 200000 + 1);
     }
+    this.tests()
   }
 
   tempoDecorrido(funcao) {
@@ -48,9 +60,7 @@ export class AppComponent implements OnInit{
   }
 
 
-
-
-  public test(){
+  public test() {
     this.time = this.tempoDecorrido(this.insertSort)
   }
 
@@ -82,6 +92,13 @@ export class AppComponent implements OnInit{
     sorter.sort(arry);
 
     console.log('Array Ordenado', arry);
+  }
+
+  tests() {
+    let blob: any = new Blob([this.array.toString()], {
+      type: "text/txt; charset=utf-8",
+    });
+    saveAs.saveAs(blob, "relatorio_produtores.txt");
   }
 
 }
