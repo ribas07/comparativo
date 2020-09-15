@@ -1,14 +1,6 @@
 <div class="card">
 
-    <div class="row">
-        <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-            <div class="card-header">Métodos de Ordenação</div>
-            <div class="card-body">
-                <h5 style="text-align: center;" class="card-title">Tamanho do array utilizado é de {{array.length}}</h5>
-                <p class="card-text">Tempo de execução: {{time}} </p>
-            </div>
-        </div>
-
+    <div class="row buttonOrdenar">
         <form [formGroup]="formTest">
             <select class="form-control-sm gerarNumero" id="tamanho" formControlName="tamanho">
                 <option *ngFor="let tamanho of tamanhoArry" [value]="tamanho.value">{{tamanho.text}}</option>
@@ -16,25 +8,45 @@
         </form>
 
         <div class="gerarNumero">
-            <button type="button" (click)="geradorNumerico()" class="btn btn-sm btn-primary">Gerar números aleatórios
+            <button type="button" (click)="geradorNumericoAleatorio()" class="btn btn-sm btn-primary">Gerar números aleatórios
             </button>
         </div>
         <div class="gerarNumero">
-            <button type="button" (click)="geradorNumerico()" class="btn btn-sm btn-primary">Gerar números crescente
+            <button type="button" (click)="geradorNumericoOrdenado()" class="btn btn-sm btn-primary">Gerar números crescente
             </button>
         </div>
         <div class="gerarNumero">
-            <button type="button" (click)="geradorNumerico()" class="btn btn-sm btn-primary">Gerar números decrescente
+            <button type="button" (click)="geradorNumericoOrdenado()" class="btn btn-sm btn-primary">Gerar números decrescente
             </button>
         </div>
     </div>
 
     <div class="row">
         <div class="buttonOrdenar">
-            <button type="button" (click)="quickSort()" class="btn btn-success">Quicksort</button>
+            <input type="file" (change)="arquivoSelecionado($event)" class="form-control-file">
         </div>
         <div class="buttonOrdenar">
-            <button type="button" (click)="test()" class="btn btn-success">Insertion Sort</button>
+            <button type="button" (click)="obterConteudo()">Processar</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="card text-white bg-warning mb-3" style="max-width: 38rem;">
+            <div class="card-header">Métodos de Ordenação</div>
+            <div class="card-body">
+                <h5 style="text-align: center;" class="card-title">Tamanho do array utilizado é de {{conteudo.length}}</h5>
+                <p class="card-text">Tempo de execução InsertSort:{{timeInsertSort}} </p>
+                <p class="card-text">Tempo de execução QuickSort: {{timeQuickSort}} </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="buttonOrdenar">
+            <button type="button" (click)="buttonQuickSort()" class="btn btn-success">Quicksort</button>
+        </div>
+        <div class="buttonOrdenar">
+            <button type="button" (click)="buttonInsertSort()" class="btn btn-success">Insertion Sort</button>
         </div>
     </div>
 
