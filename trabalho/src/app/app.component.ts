@@ -49,8 +49,9 @@ export class AppComponent implements OnInit {
   }
 
   async obterConteudo() {
+    this.conteudo = [];
+    
     const test = await this.obterConteudoDoArquivo(this.arquivo)
-
     var arrayOfStrings = test.split(',');
     for (let i = 0; i < arrayOfStrings.length; i++) {
       this.conteudo[i] = parseInt(arrayOfStrings[i])
@@ -71,10 +72,14 @@ export class AppComponent implements OnInit {
 
   public buttonInsertSort() {
     this.timeInsertSort = this.tempoDecorrido(this.insertSort);
+    let nameArquivo = 'ArquivoIsertionSort-' + this.conteudo.length + ".txt";
+    this.geradorDeArquivo(nameArquivo, this.conteudo);
   }
 
   public buttonQuickSort() {
     this.timeQuickSort = this.tempoDecorrido(this.quickSort)
+    let nameArquivo = 'ArquivoQuickSort-' + this.conteudo.length + ".txt"
+    this.geradorDeArquivo(nameArquivo, this.conteudo);
   }
 
 
@@ -104,7 +109,7 @@ export class AppComponent implements OnInit {
       this.array[i] = Math.floor(Math.random() * 200000 + 1);
     }
     let nameArquivo = 'ArquivoAleatorio-' + this.formTest.get('tamanho').value + ".txt"
-    this.geradorDeArquivo(nameArquivo)
+    this.geradorDeArquivo(nameArquivo, this.array)
   }
 
   public geradorNumericoOrdenado() {
@@ -112,15 +117,16 @@ export class AppComponent implements OnInit {
       this.array[i] = Math.floor(100000 + i * 2 + 1);
     }
     let nameArquivo = 'ArquivoOrdenado-' + this.formTest.get('tamanho').value + ".txt";
-    this.geradorDeArquivo(nameArquivo)
-
+    this.geradorDeArquivo(nameArquivo, this.array)
   }
 
-  public geradorDeArquivo(nameArquivo) {
-    let blob: any = new Blob([this.array.toString()], {
+  public geradorDeArquivo(nameArquivo, array) {
+    let blob: any = new Blob([array.toString()], {
       type: "text/txt; charset=utf-8",
     });
     saveAs.saveAs(blob, nameArquivo);
+
+    array = [];
     this.array = [];
   }
 
